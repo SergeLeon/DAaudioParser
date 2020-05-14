@@ -13,6 +13,6 @@ while True:
     req = requests.get(url)
     stat = req.status_code
     if stat == 200:  # Access check
-        print("Есть подключение " + url)
+        print(url)
         myFile = requests.get(url, allow_redirects=True)
         open(os.path.join("Files" , url1 + "_" + url1 + url2 + ".wav"), 'wb').write(myFile.content)  # Save file
