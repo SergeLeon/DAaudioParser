@@ -13,8 +13,8 @@ def generate_random_DA_url():
 
 def save_DA_audio(url):
     file_content = requests.get(url, allow_redirects=True)
-    file_name = url[-18:-4].replace('/', '_')
-    open("Files/{0}.wav".format(file_name), 'wb').write(file_content.content)
+    file_name = url[-18:].replace('/', '_')
+    open("Files/{0}".format(file_name), 'wb').write(file_content.content)
 
 
 def main():
