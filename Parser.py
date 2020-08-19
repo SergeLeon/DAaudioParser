@@ -12,18 +12,22 @@ def generate_random_DA_url():
 
 
 def save_DA_audio(url):
-    filecontent = requests.get(url, allow_redirects=True)
-    filename = url[-18:-4].replace('/', '_')
-    open("Files/{0}.wav".format(filename), 'wb').write(filecontent.content)
+    file_content = requests.get(url, allow_redirects=True)
+    file_name = url[-18:-4].replace('/', '_')
+    open("Files/{0}.wav".format(file_name), 'wb').write(file_content.content)
 
 
-if not os.path.exists("Files"):
-    os.mkdir("Files")
+def main():
+    if not os.path.exists("Files"):
+        os.mkdir("Files")
 
-while True:
-    fileurl = generate_random_DA_url()
-    req = requests.get(fileurl)
-    stat = req.status_code
-    if stat == 200:
-        print("Conected {0}".format(fileurl))
-        save_DA_audio(fileurl)
+    while True:
+        file_url = generate_random_DA_url()
+        req = requests.get(file_url)
+        stat = req.status_code
+        if stat == 200:
+            print("Saving {0}".format(file_url))
+            save_DA_audio(file_url)
+
+if __name__ == '__main__':
+    main()
