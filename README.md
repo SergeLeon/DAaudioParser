@@ -1,4 +1,4 @@
 # DAaudioParser
-Quick audio donation parser with DonationAlerts
-
-When running, the script creates a "Files" folder where it saves audio .WAV format
+Простенький парсер голосовых донатов из Donation Alerts 
+Сохраняет аудио в формате .WAV
+Перед запуском установить requirements.txt
