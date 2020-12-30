@@ -1,6 +1,7 @@
 import os
-import requests
 import random
+
+import requests
 
 
 def generate_random_DA_url():
@@ -11,10 +12,15 @@ def generate_random_DA_url():
     return url
 
 
-def save_DA_audio(url):
+def save_file(url, path, name):
     file_content = requests.get(url, allow_redirects=True)
-    file_name = url[-18:].replace('/', '_')
-    open("Files/{0}".format(file_name), 'wb').write(file_content.content)
+    open(f"{path}\\{name}", 'wb').write(file_content.content)
+
+
+def validate_url(url):
+    req = requests.get(url)
+    stat = req.status_code
+    return stat == 200
 
 
 def main():
@@ -23,11 +29,10 @@ def main():
 
     while True:
         file_url = generate_random_DA_url()
-        req = requests.get(file_url)
-        stat = req.status_code
-        if stat == 200:
+        if validate_url(file_url):
             print("Saving {0}".format(file_url))
-            save_DA_audio(file_url)
+            save_file(file_url, "Files\\", file_url[-18:].replace('/', '_'))
+
 
 if __name__ == '__main__':
     main()
